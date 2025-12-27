@@ -1,10 +1,11 @@
 import { baseApi } from './baseApi';
 import type { AuthResponse } from '../types/auth.types';
 import { setCredentials } from './authSlice';
+import { toast } from 'sonner';
 
 export const authApiSlice = baseApi.injectEndpoints({
   endpoints: (builder) => ({
-    
+
     login: builder.mutation<AuthResponse, any>({
       query: (credentials) => ({
         url: '/auth/login',
@@ -23,9 +24,17 @@ export const authApiSlice = baseApi.injectEndpoints({
             },
             token: data.token,
           }));
-          
-        } catch (err) {
 
+        } catch (err) {
+          if (err && typeof err === 'object' && 'data' in err) {
+            const errorData = err.data as { message: string };
+
+            const isRateLimited = (err as any).status === 429;
+
+            toast.error(isRateLimited ? "Too many attempts. Slow down!" : errorData.message);
+          } else {
+            toast.error('An unexpected error occurred');
+          }
         }
       },
     }),
@@ -50,7 +59,14 @@ export const authApiSlice = baseApi.injectEndpoints({
           }));
 
         } catch (err) {
+          if (err && typeof err === 'object' && 'data' in err) {
+            const errorData = err.data as { message: string };
+            const isRateLimited = (err as any).status === 429;
 
+            toast.error(isRateLimited ? "Too many attempts. Slow down!" : errorData.message);
+          } else {
+            toast.error('An unexpected error occurred');
+          }
         }
       },
     }),
