@@ -12,7 +12,7 @@ export const createTask = async (userId: string, data: Partial<ITask>) => {
 };
 
 export const findAllTasks = async (userId: string, filters: TaskFilters) => {
-  const { search, isCompleted, page = 1, limit = 10 } = filters;
+  const { search, isCompleted, page = 1, limit = 5 } = filters;
   const query: any = { user: userId };
 
   if (search) {
