@@ -1,50 +1,41 @@
-# ==========================
-# GLOBAL (Apply to all folders)
-# ==========================
+# Dependency Directories
 node_modules/
-.DS_Store
-.vscode/
-.idea/
+backend/node_modules/
+web/node_modules/
+mobile/node_modules/
+
+# Environment Variables (CRITICAL: Never commit these!)
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Build Outputs
+dist/
+build/
+backend/dist/
+web/dist/
+web/build/
+
+# Mobile / Expo Specific
+.expo/
+*.jks
+*.p12
+*.key
+*.mobileprovision
+android/
+ios/
+
+# Logs and Debugging
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+logs/
+*.log
 
-# ==========================
-# BACKEND (Node.js/Express)
-# ==========================
-backend/.env
-backend/dist/
-backend/coverage/
-backend/logs/
-backend/*.log
-
-# ==========================
-# WEB (React + Vite)
-# ==========================
-web/dist/
-web/build/
-web/.env.local
-web/.env.*.local
-web/coverage/
-
-# ==========================
-# MOBILE (React Native)
-# ==========================
-# React Native Metro
-mobile/.metro/
-mobile/.expo/
-mobile/metro-cache/
-
-# Android Build Files
-mobile/android/build/
-mobile/android/app/build/
-mobile/android/.gradle/
-mobile/android/local.properties
-mobile/*.keystore
-
-# iOS Build Files
-mobile/ios/Pods/
-mobile/ios/build/
-mobile/ios/*.xcworkspace
-mobile/ios/*.xcuserdatad
-mobile/ios/DerivedData/
+# Editor & OS Specific
+.DS_Store
+.vscode/
+.idea/
+Thumbs.db
