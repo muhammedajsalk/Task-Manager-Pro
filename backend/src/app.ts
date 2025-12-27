@@ -1,4 +1,4 @@
-import express, { Application, Request, Response } from 'express';
+import express, { Application, NextFunction, Request, Response } from 'express';
 import cors from 'cors';
 import morgan from 'morgan';
 import helmet from 'helmet'
@@ -6,32 +6,34 @@ import helmet from 'helmet'
 import authRoutes from './routes/auth.routes';
 import taskRoutes from './routes/task.routes'
 import errorHandler from './middleware/error.middleware';
-import { protect } from './middleware/auth.middleware';
 import { apiLimiter, authLimiter } from './middleware/rateLimiter';
-import mongoSanitize from 'express-mongo-sanitize';
-import xss from 'xss-clean';
+import { configDotenv } from 'dotenv';
+
+configDotenv()
 
 const frontendUrl = process.env.FRONTEND_URL
 
-const app: Application = express();
+console.log(frontendUrl)
 
-app.set('trust proxy', 1);
+const app: Application = express();
 
 app.use(helmet());
 
 app.use(express.json());
-app.use(mongoSanitize());
-app.use(xss());
+app.use(express.urlencoded({ extended: true }));
+
 app.use(cors({
   origin: frontendUrl,
   credentials: true,
-  methods: ['GET', 'POST', 'PUT', 'DELETE']
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  allowedHeaders: ["Content-Type", "Authorization"]
 }));
 app.use(morgan('dev'));
 
+
 app.use('/api', apiLimiter);
 app.use('/api/auth', authLimiter, authRoutes);
-app.use('/api/task', protect, taskRoutes)
+app.use('/api/task', taskRoutes)
 
 app.use(errorHandler);
 

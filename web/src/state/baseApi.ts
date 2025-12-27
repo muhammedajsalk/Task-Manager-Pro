@@ -6,10 +6,12 @@ interface RootState {
   }
 }
 
+const BASE_URL = import.meta.env.VITE_BASE_URL;
+
 export const baseApi = createApi({
   reducerPath: 'api',
   baseQuery: fetchBaseQuery({
-    baseUrl: 'http://localhost:5000/api',
+    baseUrl: BASE_URL,
     prepareHeaders: (headers, { getState }) => {
       const token = (getState() as RootState).auth.token;
       
