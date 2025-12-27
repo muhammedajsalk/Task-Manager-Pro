@@ -1,10 +1,25 @@
-import { StrictMode } from 'react'
-import { createRoot } from 'react-dom/client'
-import './index.css'
-import App from './App.tsx'
+import React from 'react';
+import { createRoot } from 'react-dom/client';
+import { Provider } from 'react-redux';
+import { BrowserRouter } from 'react-router-dom';
+import { Toaster } from 'sonner';
+import { CssBaseline, ThemeProvider } from '@mui/material';
+
+import App from './App';
+import { store } from './state/store';
+import theme from './theme/theme';
+import './index.css';
 
 createRoot(document.getElementById('root')!).render(
-  <StrictMode>
-    <App />
-  </StrictMode>,
-)
+  <React.StrictMode>
+    <Provider store={store}>
+      <BrowserRouter>
+        <ThemeProvider theme={theme}>
+          <CssBaseline /> 
+          <App />
+          <Toaster richColors position="top-right" /> 
+        </ThemeProvider>
+      </BrowserRouter>
+    </Provider>
+  </React.StrictMode>,
+);
