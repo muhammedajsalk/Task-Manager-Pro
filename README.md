@@ -67,3 +67,13 @@ All task-related requests must include the header: `Authorization: Bearer <your_
 | `POST`   | `/tasks`     | `{ title, description }`                     |
 | `PUT`    | `/tasks/:id` | `{ title, description, isCompleted }`        |
 | `DELETE` | `/tasks/:id` | Delete specific task by ID                   |
+
+
+### 📸 App Screenshots
+
+| Web / Desktop Version | Mobile Version |
+| :---: | :---: |
+| <img src="./screenshots/Screenshot 2025-12-28 122519.png" width="450"> | <img src="./screenshots/WhatsApp Image 2025-12-28 at 12.21.56.jpeg" width="180"> |
+| <img src="./screenshots/Screenshot 2025-12-28 122519.png" width="450"> | <img src="./screenshots/WhatsApp Image 2025-12-28 at 12.21.57 (1).jpeg" width="180"> |
+| <img src="./screenshots/Screenshot 2025-12-28 122552.png" width="450"> | <img src="./screenshots/WhatsApp Image 2025-12-28 at 12.21.57.jpeg" width="180"> |
+| <img src="./screenshots/Screenshot 2025-12-28 122615.png" width="450"> | <img src="./screenshots/WhatsApp Image 2025-12-28 at 12.21.58.jpeg" width="180"> |
