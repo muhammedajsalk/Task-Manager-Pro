@@ -82,7 +82,7 @@ A professional, cross-platform task management solution featuring a **Node.js/Ex
 2.  **Install**: Type `npm install`.
 3.  **Configure**: Create a `.env` file in the web folder and add:
     ```env
-    VITE_API_URL=http://localhost:5000/api
+    VITE_BASE_URL=http://localhost:5000/api
     ```
 4.  **Start**: Type `npm run dev`. Open the link (usually `http://localhost:5173`) in your browser.
 
