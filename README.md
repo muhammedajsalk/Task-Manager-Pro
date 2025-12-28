@@ -63,7 +63,6 @@ A professional, cross-platform task management solution featuring a **Node.js/Ex
 
 ---
 
-## 🧬 System Flow
 
 ## ⚙️ Setup Instructions (Beginner Friendly)
 
