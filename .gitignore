@@ -18,6 +18,8 @@ backend/dist/
 web/dist/
 web/build/
 
+mobile/.env
+
 # Mobile / Expo Specific
 .expo/
 *.jks
