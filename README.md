@@ -96,7 +96,7 @@ A professional, cross-platform task management solution featuring a **Node.js/Ex
     * Copy the URL it gives you (e.g., `https://1234.ngrok-free.app`).
 4.  **Update Mobile `.env`**: Create a `.env` file in the mobile folder:
     ```env
-    EXPO_PUBLIC_API_URL=[https://your-ngrok-link.ngrok-free.app/api](https://your-ngrok-link.ngrok-free.app/api)
+    EXPO_PUBLIC_API_URL=https://your-ngrok-link.ngrok-free.app/api
     ```
 5.  **Start**: Type `npx expo start --tunnel`. Scan the QR code with the **Expo Go** app.
 
