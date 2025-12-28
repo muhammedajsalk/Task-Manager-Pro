@@ -74,6 +74,7 @@ A professional, cross-platform task management solution featuring a **Node.js/Ex
     PORT=5000
     MONGO_URI=your_mongodb_connection_string
     JWT_SECRET=your_secret_key
+    JWT_EXPIRES_IN=7d
     ```
 4.  **Start**: Type `npm run dev`. You should see "Server running on port 5000."
 
