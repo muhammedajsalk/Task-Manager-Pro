@@ -4,13 +4,66 @@ A professional, cross-platform task management solution featuring a **Node.js/Ex
 
 ---
 
-## 🛠️ Project Architecture
-
-* **Backend**: Node.js & Express with MongoDB. Handles logic, security, and data.
-* **Web**: React + Vite + Tailwind CSS. A high-performance desktop dashboard.
-* **Mobile**: Expo + Redux Toolkit. A persistent, touch-optimized mobile experience.
+# 🏗️ Full-Stack Project Architecture
 
 ---
+
+## 🧠 Backend (API Server)
+
+**Tech Stack**
+- Node.js
+- Express.js
+- TypeScript
+
+**Security & Utilities**
+- bcryptjs
+- cors
+- dotenv
+- helmet
+- express-rate-limit
+- morgan
+
+**Auth & Data**
+- jsonwebtoken (JWT)
+- mongoose (MongoDB ODM)
+- Joi (request validation)
+
+---
+
+## 💻 Web Application (Frontend – Dashboard / Client)
+
+**Framework**
+- React (TypeScript)
+
+**UI & Components**
+- Material UI (MUI)
+- Material Icons
+
+**State & Data Handling**
+- Redux Toolkit Query (RTK Query)
+
+**Forms & UX**
+- React Hook Form
+- Yup (validation)
+- Sonner (toast notifications)
+
+---
+
+## 📱 Mobile App (Expo – React Native)
+
+**Framework**
+- Expo + React Native (TypeScript)
+
+**State Management**
+- Redux Toolkit
+
+**Forms & Validation**
+- React Hook Form
+- Yup
+
+---
+
+## 🧬 System Flow
 
 ## ⚙️ Setup Instructions (Beginner Friendly)
 
