@@ -18,16 +18,25 @@ const authSlice = createSlice({
     setCredentials: (state, action: PayloadAction<{ user: any; token: string }>) => {
       state.user = action.payload.user;
       state.token = action.payload.token;
-      // Save to mobile persistent storage
-      AsyncStorage.setItem('token', action.payload.token);
+      if (action.payload.token) {
+        AsyncStorage.setItem('token', action.payload.token);
+      }
+
+      if (action.payload.user) {
+        AsyncStorage.setItem('user', JSON.stringify(action.payload.user));
+      }
+    },
+    hydrateAuth: (state, action: PayloadAction<{ user: any; token: string }>) => {
+      state.user = action.payload.user;
+      state.token = action.payload.token;
     },
     logout: (state) => {
       state.user = null;
       state.token = null;
-      AsyncStorage.removeItem('token');
+      AsyncStorage.clear();
     },
   },
 });
 
-export const { setCredentials, logout } = authSlice.actions;
+export const { setCredentials, logout, hydrateAuth } = authSlice.actions;
 export default authSlice.reducer;

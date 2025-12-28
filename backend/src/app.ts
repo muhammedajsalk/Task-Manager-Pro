@@ -13,21 +13,23 @@ configDotenv()
 
 const frontendUrl = process.env.FRONTEND_URL
 
-console.log(frontendUrl)
 
 const app: Application = express();
+
+app.set('trust proxy', 1);
 
 app.use(helmet());
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-app.use(cors({
-  origin: frontendUrl,
-  credentials: true,
-  methods: ['GET', 'POST', 'PUT', 'DELETE'],
-  allowedHeaders: ["Content-Type", "Authorization"]
-}));
+// app.use(cors({
+//   origin: frontendUrl,
+//   credentials: true,
+//   methods: ['GET', 'POST', 'PUT', 'DELETE'],
+//   allowedHeaders: ["Content-Type", "Authorization"]
+// }));
+app.use(cors())
 app.use(morgan('dev'));
 
 

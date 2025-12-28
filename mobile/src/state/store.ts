@@ -10,7 +10,7 @@ export const store = configureStore({
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
-      serializableCheck: false, // Recommended for AsyncStorage interactions
+      serializableCheck: false, 
     }).concat(baseApi.middleware),
 });
 

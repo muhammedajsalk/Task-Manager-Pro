@@ -4,7 +4,6 @@ import { RootState } from './store';
 export const baseApi = createApi({
   reducerPath: 'api',
   baseQuery: fetchBaseQuery({
-    // Use the EXPO_PUBLIC prefix for mobile env variables
     baseUrl: process.env.EXPO_PUBLIC_API_URL, 
     prepareHeaders: (headers, { getState }) => {
       const token = (getState() as RootState).auth.token;

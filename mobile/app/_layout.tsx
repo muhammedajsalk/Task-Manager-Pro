@@ -1,45 +1,57 @@
-import { useEffect } from 'react';
-import { Provider, useSelector } from 'react-redux';
-import { Stack, useRouter, useSegments } from 'expo-router';
-import { store, RootState } from '../src/state/store'; // Ensure path is correct
-import * as SplashScreen from 'expo-splash-screen';
+import { useEffect, useState } from 'react';
+import { Stack } from 'expo-router';
+import { Provider, useDispatch } from 'react-redux';
+import { View, ActivityIndicator } from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { store } from '../src/state/store';
+import { hydrateAuth } from '../src/state/authSlice';
 
-// Keep the splash screen visible while we check authentication
-SplashScreen.preventAutoHideAsync();
+function RootLayoutNav() {
+  const dispatch = useDispatch();
+  const [isReady, setIsReady] = useState(false);
+
+  useEffect(() => {
+    const initializeAuth = async () => {
+      try {
+        const token = await AsyncStorage.getItem('token');
+        const userJson = await AsyncStorage.getItem('user');
+
+        if (token && userJson) {
+          const user = JSON.parse(userJson);
+          dispatch(hydrateAuth({ token, user }));
+        }
+      } catch (error) {
+        console.error("Auth hydration error:", error);
+      } finally {
+        setIsReady(true);
+      }
+    };
+
+    initializeAuth();
+  }, [dispatch]);
+
+  if (!isReady) {
+    return (
+      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+        <ActivityIndicator size="large" color="#1976d2" />
+      </View>
+    );
+  }
+
+  return (
+    <Stack screenOptions={{ headerShown: false }}>
+      <Stack.Screen name="index" />
+      <Stack.Screen name="login" />
+      <Stack.Screen name="register" />
+      <Stack.Screen name="(tabs)" />
+    </Stack>
+  );
+}
 
 export default function RootLayout() {
   return (
     <Provider store={store}>
       <RootLayoutNav />
     </Provider>
-  );
-}
-
-function RootLayoutNav() {
-  const { token } = useSelector((state: RootState) => state.auth);
-  const segments = useSegments();
-  const router = useRouter();
-
-  useEffect(() => {
-    // Hide splash screen once we have evaluated the state
-    SplashScreen.hideAsync();
-
-    const inTabsGroup = segments[0] === '(tabs)';
-
-    if (!token && inTabsGroup) {
-      // If no token and trying to see dashboard, go to login
-      router.replace('/login');
-    } else if (token && segments[0] === 'login') {
-      // If logged in and on login page, go to dashboard
-      router.replace('/(tabs)/home');
-    }
-  }, [token, segments]);
-
-  return (
-    <Stack>
-      {/* Ensure name="login" matches your file app/login.tsx */}
-      <Stack.Screen name="login" options={{ headerShown: false }} />
-      <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-    </Stack>
   );
 }

@@ -12,6 +12,7 @@ export const authApiSlice = baseApi.injectEndpoints({
         method: 'POST',
         body: credentials,
       }),
+      invalidatesTags: ['Task'],
       async onQueryStarted(arg, { dispatch, queryFulfilled }) {
         try {
           const { data } = await queryFulfilled;
@@ -45,6 +46,7 @@ export const authApiSlice = baseApi.injectEndpoints({
         method: 'POST',
         body: credentials,
       }),
+      invalidatesTags: ['Task'],
       async onQueryStarted(arg, { dispatch, queryFulfilled }) {
         try {
           const { data } = await queryFulfilled;
